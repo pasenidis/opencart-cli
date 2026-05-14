@@ -1,0 +1,6 @@
+* text=auto eol=lf
+
+*.twig diff=html
+*.css diff=css
+*.js diff=js
+*.php diff=php
