@@ -20,7 +20,7 @@ All routes run in the **catalog** context, using the root `config.php`.
 2. The CLI config disables sessions, cookies, and URL handling since they are irrelevant in a terminal
 3. The database connection is established as normal, so you have full access to models and data
 4. The `Cli` library parses the command line arguments into a route, options, and positional parameters
-5. During startup, all `--key=value` options are copied into `$this->request->get`, so any existing controller that reads from `$this->request->get` will work without modification
+5. During startup, all `--key=value` options are copied into `$this->request->get`, and the route is set as `$this->request->get['route']` (falling back to `cli/not_found`), so any existing controller or extension that reads from `$this->request->get` will work without modification
 6. The router dispatches to your controller just like a normal HTTP request would
 
 ## Argument formats

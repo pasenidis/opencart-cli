@@ -61,6 +61,10 @@ class Cli
 
     public function getRoute(): string
     {
+        if ($this->route === '' || $this->route === 'cli/router') {
+            return (string)$this->registry->get('config')->get('action_default');
+        }
+
         return $this->route;
     }
 
@@ -88,11 +92,7 @@ class Cli
      */
     public function router()
     {
-        $route = $this->route;
-
-        if (empty($route) || $route === 'cli/router') {
-            $route = $this->registry->get('config')->get('action_default');
-        }
+        $route = $this->getRoute();
 
         $result = $this->registry->get('event')->trigger('controller/' . $route . '/before', [&$route, &$this->params]);
 

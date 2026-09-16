@@ -7,6 +7,7 @@
  * @version 1.0
  *
  * @property Registry $registry
+ * @property Request $request
  */
 class ControllerCliStartup extends Controller
 {
@@ -18,6 +19,8 @@ class ControllerCliStartup extends Controller
         foreach ($cli->getOptions() as $key => $value) {
             $this->request->get[$key] = $value;
         }
+
+        $this->request->get['route'] = $cli->getRoute();
 
         $this->registry->set('cli', $cli);
     }
